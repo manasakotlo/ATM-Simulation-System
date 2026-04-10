@@ -1,41 +1,37 @@
-# ATM-Simulation-System
-Python Microproject on ATM Simulation System
-# ATM Automation Simulation
+# 🏧 ATM Automation System using Python
 
-This project is a Python-based ATM simulation system developed as a microproject for **Programming in Python**.
+A simple **ATM Automation Simulation System** developed using **Python**.  
+This project simulates the basic functionalities of an ATM machine such as login authentication, balance enquiry, deposit, withdrawal, PIN change, mini statement, and receipt generation.
 
-## Project Description
-The ATM Automation Simulation is designed to perform basic banking operations similar to a real ATM machine.
+---
 
-Users can securely log in using a PIN and perform multiple transactions through a menu-driven program.
+## 📌 Features
 
-## Features
-- PIN verification with 3 attempts
-- Check account balance
-- Deposit money
-- Withdraw money
-- Change PIN
-- Fast cash withdrawal
-- Mini statement
-- Receipt generation
-- Exit option
+- 🔐 Secure 4-digit PIN login
+- 💰 Check account balance
+- ➕ Deposit money
+- ➖ Withdraw money
+- ⚡ Fast cash withdrawal (₹500)
+- 🧾 Mini statement / transaction history
+- 🔑 Change PIN
+- 🖨️ Receipt generation
+- 💾 Data stored permanently using JSON file
 
-## Technologies Used
-- Python 3.x
-- VS Code / Online Python Compiler
+---
 
-## How to Run
-1. Open the Python file
-2. Run the program
-3. Enter the PIN
-4. Select required ATM operation
+## 🛠️ Technologies Used
 
-## Sample Default Details
-- Default PIN: 7788
-- Initial Balance: ₹2890
+- **Python**
+- **JSON File Handling**
+- **Object Oriented Programming (OOP)**
 
-## Project Type
-Microproject for Programming in Python
+---
 
-## Developed By
-Group Project
+## 📂 Project Structure
+
+```bash
+ATM-Automation-System/
+│
+├── atm.py
+├── atm_data.json
+└── README.md
