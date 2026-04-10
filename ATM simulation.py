@@ -1,10 +1,31 @@
-# ATM Automation Simulation - Python Micro Project
+import json
+
+DATA_FILE = "atm_data.json"
+
 
 class ATM:
-    def __init__(self, pin="7788", balance=2890):
-        self.pin = pin
-        self.balance = balance
-        self.transaction_history = []
+
+    def __init__(self):
+        self.data = self.load_data()
+        self.pin = self.data["pin"]
+        self.balance = self.data["balance"]
+        self.transaction_history = self.data["history"]
+
+    # Load saved data
+    def load_data(self):
+        try:
+            with open(DATA_FILE, "r") as file:
+                return json.load(file)
+        except:
+            return {"pin": "7788", "balance": 2890, "history": []}
+
+    # Save data to file
+    def save_data(self):
+        self.data["pin"] = self.pin
+        self.data["balance"] = self.balance
+        self.data["history"] = self.transaction_history
+        with open(DATA_FILE, "w") as file:
+            json.dump(self.data, file)
 
     def login_page(self):
         print("===== WELCOME TO ATM AUTOMATION SYSTEM =====")
@@ -36,6 +57,7 @@ class ATM:
     def check_balance(self):
         print("Available Balance: ₹", self.balance)
         self.transaction_history.append("Checked Balance")
+        self.save_data()
 
     def deposit(self):
         amount = float(input("Enter amount to deposit: ₹"))
@@ -43,6 +65,7 @@ class ATM:
         print("₹", amount, "deposited successfully")
         print("Available Balance: ₹", self.balance)
         self.transaction_history.append(f"Deposited ₹{amount}")
+        self.save_data()
 
     def withdraw(self):
         amount = float(input("Enter amount to withdraw: ₹"))
@@ -53,7 +76,7 @@ class ATM:
             self.transaction_history.append(f"Withdrawn ₹{amount}")
         else:
             print("Insufficient balance")
-            print("Available Balance: ₹", self.balance)
+        self.save_data()
 
     def fast_cash(self):
         amount = 500
@@ -64,6 +87,7 @@ class ATM:
             self.transaction_history.append("Fast Cash ₹500")
         else:
             print("Insufficient balance")
+        self.save_data()
 
     def change_pin(self):
         current_pin = input("Enter current PIN: ")
@@ -73,6 +97,7 @@ class ATM:
                 self.pin = new_pin
                 print("PIN changed successfully")
                 self.transaction_history.append("PIN Changed")
+                self.save_data()
             else:
                 print("PIN must be exactly 4 digits")
         else:
@@ -90,6 +115,7 @@ class ATM:
         print("\n----- RECEIPT -----")
         print("Current Balance: ₹", self.balance)
         print("Thank you for using ATM")
+
 
 def main():
     atm = ATM()
@@ -120,6 +146,7 @@ def main():
             break
         else:
             print("Invalid choice, please try again")
+
 
 if __name__ == "__main__":
     main()
